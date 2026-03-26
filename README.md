@@ -7,6 +7,7 @@ Perfect for dashboards, bots, and monitoring tools.
 - Supports Java (1.7+), legacy Java (Beta 1.8-1.6), and Bedrock
 - Simple REST endpoints
 - Lightweight Flask backend
+- Cached responses
 - Ready for [Heroku](https://heroku.com) and [Render](https://render.com) deployment
 
 ## Running Locally
