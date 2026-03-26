@@ -1,19 +1,57 @@
 # Simple Minecraft Query Flask RESTful API
 
-![](https://lh3.googleusercontent.com/ZLjX1kYdkywrtdWpOinDk7IV0jgEiQiPC7uvIN32TGnKu2KcOJo1jmOI1fWHciShPKobNQ=s80)
+A lightweight REST API for querying Minecraft server status (Java, legacy, and Bedrock) using the mcstatus library.  
+Perfect for dashboards, bots, and monitoring tools.
 
-![](https://miro.medium.com/max/240/1*D0rJozJto_S4eO2ab-qWtQ.jpeg)
+## Features
+- Supports Java (1.7+), legacy Java (Beta 1.8-1.6), and Bedrock
+- Simple REST endpoints
+- Lightweight Flask backend
+- Ready for [Heroku](https://heroku.com) and [Render](https://render.com) deployment
 
-This project is setup to run at <https://heroku.com>.
+## Running Locally
 
-This is a python Flask inferface (RESTful API) between the user and the [py-mine/mcstatus](https://github.com/py-mine/mcstatus) python library.
+### Development server
+```
+python -m app
+```
 
-Development/Production servers:
-- To test with the development server (flask run) run: `python wsgi.py`
-- To test with the production server (waitress) run: `waitress-serve --port=80 wsgi:app`
+### Production server (Waitress)
+```
+waitress-serve --listen=127.0.0.1:3000 wsgi:app
+```
 
-Notes:
-- The version parameter in the url below can be `java` or `bedrock`
-- To get the full information for a server access `https://your-app-name.herokuapp.com/api/full/{version}/{ip}/{port}`
-- To get only the player count access `https://your-app-name.herokuapp.com/api/players/{version}/{ip}/{port}`
-- You can omit the port in the url to use the default 25565 (java) or 19132 (bedrock).
+[VSCode](https://code.visualstudio.com/) launch configurations are included.
+
+## API Endpoints
+
+Get full server info:
+```
+GET /api/full/{version}/{ip}/{port}
+```
+
+Get player count:
+```
+GET /api/players/{version}/{ip}/{port}
+```
+
+The version parameter in the url can be:
+- `java` (1.7+)
+- `java_legacy` (Beta 1.8-1.6)
+- `bedrock`
+
+### Example
+```
+https://your-app-url.com/api/full/java/mc.hypixel.net
+```
+
+## Deployment
+
+### Heroku
+- Uses the included `Procfile` automatically
+
+### Render
+- Set start command to:
+```
+Render.sh
+```
