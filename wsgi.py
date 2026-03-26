@@ -1,5 +1,3 @@
-import os
-from app.main import app
+"""WSGI entry point"""
 
-if __name__ == "__main__":
-  app.run(debug = False, host = '0.0.0.0', port = int(os.environ.get("PORT", 80)))
+from app.app import app  # pylint: disable=unused-import # noqa: F401
