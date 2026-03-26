@@ -202,8 +202,8 @@ mcquery_api.add_resource(
 )
 mcquery_api.add_resource(
     QueryPlayerCountJava,
-    '/api/playerscount/java/<string:ip>',
-    '/api/playerscount/java/<string:ip>/<string:port>'
+    '/api/playercount/java/<string:ip>',
+    '/api/playercount/java/<string:ip>/<string:port>'
 )
 mcquery_api.add_resource(
     QueryServerJavaLegacy,
@@ -212,8 +212,8 @@ mcquery_api.add_resource(
 )
 mcquery_api.add_resource(
     QueryPlayerCountJavaLegacy,
-    '/api/playerscount/java_legacy/<string:ip>',
-    '/api/playerscount/java_legacy/<string:ip>/<string:port>'
+    '/api/playercount/java_legacy/<string:ip>',
+    '/api/playercount/java_legacy/<string:ip>/<string:port>'
 )
 mcquery_api.add_resource(
     QueryServerBedrock,
@@ -222,6 +222,6 @@ mcquery_api.add_resource(
 )
 mcquery_api.add_resource(
     QueryPlayerCountBedrock,
-    '/api/playerscount/bedrock/<string:ip>',
-    '/api/playerscount/bedrock/<string:ip>/<string:port>'
+    '/api/playercount/bedrock/<string:ip>',
+    '/api/playercount/bedrock/<string:ip>/<string:port>'
 )
