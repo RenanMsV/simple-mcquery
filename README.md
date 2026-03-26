@@ -53,5 +53,5 @@ https://your-app-url.com/api/full/java/mc.hypixel.net
 ### Render
 - Set start command to:
 ```
-Render.sh
+./Render.sh
 ```
