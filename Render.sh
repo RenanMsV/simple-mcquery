@@ -2,13 +2,10 @@
 
 # WSGI command for Render.com
 
-PORT=${PORT:-5000}
-WEB_CONCURRENCY=${WEB_CONCURRENCY:-4}
+PORT=${PORT:-3000}
+THREADS=${THREADS:-4}
 
 waitress-serve \
   --listen 0.0.0.0:$PORT \
-  --trusted-proxy '*' \
-  --trusted-proxy-headers "x-forwarded-for x-forwarded-proto x-forwarded-port" \
-  --clear-untrusted-proxy-headers \
-  --threads $WEB_CONCURRENCY \
-  wsgi:app
+  --threads $THREADS \
+  --call app:create_app

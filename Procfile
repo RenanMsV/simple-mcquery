@@ -1,1 +1,1 @@
-web: waitress-serve --listen "*:$PORT" --trusted-proxy '*' --trusted-proxy-headers 'x-forwarded-for x-forwarded-proto x-forwarded-port' --log-untrusted-proxy-headers --clear-untrusted-proxy-headers --threads ${WEB_CONCURRENCY:-4} wsgi:app
+web: waitress-serve --listen 0.0.0.0:$PORT --threads 4 --call app:create_app
