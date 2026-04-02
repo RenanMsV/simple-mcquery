@@ -24,16 +24,51 @@ waitress-serve --listen=127.0.0.1:3000 app:create_app
 
 [VSCode](https://code.visualstudio.com/) launch configurations are included.
 
+## Deployment
+
+### Heroku
+- Uses the included `Procfile` automatically
+
+### Render
+- Set start command to:
+```
+./Render.sh
+```
+
 ## API Endpoints
 
 Get full server info:
 ```
-GET /api/full/{version}/{ip}/{port}
+GET /api/{version}/full/{ip}/{port}
+```
+Example result:
+```
+{
+  "cached_at": "2026-04-02T01:09:10.903972",
+  "message": {
+    "ip:port": "mc.hypixel.net:25565",
+    "players": "19823",
+    "players_max": "200000",
+    "ping": "406",
+    "version": "Requires MC 1.8 / 1.21",
+    "version_protocol": "47",
+    "description": "§f                 §aHypixel Network §c[1.8/1.21]\n§f       §b§lEASTER EVENT §7§l+ §6§lANNIVERSARY BINGO"
+  }
+}
 ```
 
 Get player count:
 ```
-GET /api/players/{version}/{ip}/{port}
+GET /api/{version}/playercount/{ip}/{port}
+```
+Example result:
+```
+{
+  "cached_at": "2026-04-02T01:10:40.548396",
+  "message": {
+    "players": "19798"
+  }
+}
 ```
 
 The version parameter in the url can be:
@@ -44,15 +79,4 @@ The version parameter in the url can be:
 ### Example
 ```
 https://your-app-url.com/api/full/java/mc.hypixel.net
-```
-
-## Deployment
-
-### Heroku
-- Uses the included `Procfile` automatically
-
-### Render
-- Set start command to:
-```
-./Render.sh
 ```
