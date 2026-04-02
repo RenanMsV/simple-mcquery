@@ -8,9 +8,9 @@ from mcstatus import BedrockServer
 
 
 def _lookup(
-        server_cls: JavaServer | LegacyServer | BedrockServer,
-        ip: str,
-        port: int
+    server_cls: JavaServer | LegacyServer | BedrockServer,
+    ip: str,
+    port: int
 ):
     """Helper to lookup and fetch status."""
     server = server_cls.lookup(f"{ip}:{port}")
