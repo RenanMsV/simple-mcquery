@@ -18,7 +18,8 @@
             "module": "waitress",
             "args": [
                 "--listen=127.0.0.1:3000",
-                "wsgi:app"
+                "--call",
+                "app:create_app"
             ]
         }
     ]
