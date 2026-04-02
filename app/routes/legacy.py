@@ -27,6 +27,14 @@ Players = create_resource(
     DefaultPorts.LEGACY
 )
 
+Latency = create_resource(
+    "LegacyLatency",
+    mcstatus_wrapper.get_latency_java_legacy,
+    OutboundMessages.TIMEOUT_LEGACY,
+    lambda r: {"latency": r},
+    DefaultPorts.LEGACY
+)
+
 api.add_resource(
     Full,
     "/full/<string:ip>",
@@ -37,4 +45,10 @@ api.add_resource(
     Players,
     "/playercount/<string:ip>",
     "/playercount/<string:ip>/<string:port>"
+)
+
+api.add_resource(
+    Latency,
+    "/latency/<string:ip>",
+    "/latency/<string:ip>/<string:port>"
 )

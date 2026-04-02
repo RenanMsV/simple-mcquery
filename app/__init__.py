@@ -2,7 +2,7 @@
 
 """The Minecraft Query API app definition."""
 
-__version__ = "1.1.1"
+__version__ = "1.2.0"
 
 from flask import Flask
 from app.extensions import cache, logger

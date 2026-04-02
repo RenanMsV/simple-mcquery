@@ -33,10 +33,15 @@ class Root(Resource):
             "routes": {
                 "java_full": "/api/java/full/{ip}/{port?}",
                 "java_players": "/api/java/playercount/{ip}/{port?}",
+                "java_latency": "/api/java/latency/{ip}{port?}",
+
                 "legacy_full": "/api/legacy/full/{ip}/{port?}",
                 "legacy_players": "/api/legacy/playercount/{ip}/{port?}",
+                "legacy_latency": "/api/legacy/latency/{ip}{port?}",
+
                 "bedrock_full": "/api/bedrock/full/{ip}/{port?}",
-                "bedrock_players": "/api/bedrock/playercount/{ip}/{port?}"
+                "bedrock_players": "/api/bedrock/playercount/{ip}/{port?}",
+                "bedrock_latency": "/api/bedrock/latency/{ip}/{port?}"
             },
             "default_ports": {
                 "java": DefaultPorts.JAVA,

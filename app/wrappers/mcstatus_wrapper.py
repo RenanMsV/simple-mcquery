@@ -7,7 +7,11 @@ from mcstatus import LegacyServer
 from mcstatus import BedrockServer
 
 
-def _lookup(server_cls, ip: str, port: int):
+def _lookup(
+        server_cls: JavaServer | LegacyServer | BedrockServer,
+        ip: str,
+        port: int
+):
     """Helper to lookup and fetch status."""
     server = server_cls.lookup(f"{ip}:{port}")
     return server.status()
@@ -23,8 +27,20 @@ def _format_common(status) -> dict:
     return {
         "players": str(status.players.online),
         "players_max": str(status.players.max),
-        "ping": str(round(status.latency)),
+        "latency": str(round(status.latency)),
     }
+
+
+def _get_player_count(server_cls, ip: str, port: int) -> str:
+    """Generic player count fetcher."""
+    status = _lookup(server_cls, ip, port)
+    return str(status.players.online)
+
+
+def _get_latency(server_cls, ip: str, port: int) -> str:
+    """Generic latency fetcher."""
+    status = _lookup(server_cls, ip, port)
+    return str(round(status.latency))
 
 
 def get_java(ip: str, port: int) -> dict:
@@ -73,12 +89,6 @@ def get_bedrock(ip: str, port: int) -> dict:
     return full
 
 
-def _get_player_count(server_cls, ip: str, port: int) -> str:
-    """Generic player count fetcher."""
-    status = _lookup(server_cls, ip, port)
-    return str(status.players.online)
-
-
 def get_players_java(ip: str, port: int) -> str:
     """Gets player count for Java server."""
     return _get_player_count(JavaServer, ip, port)
@@ -92,3 +102,18 @@ def get_players_java_legacy(ip: str, port: int) -> str:
 def get_players_bedrock(ip: str, port: int) -> str:
     """Gets player count for Bedrock server."""
     return _get_player_count(BedrockServer, ip, port)
+
+
+def get_latency_java(ip: str, port: int) -> str:
+    """Gets latency for Java server."""
+    return _get_latency(JavaServer, ip, port)
+
+
+def get_latency_java_legacy(ip: str, port: int) -> str:
+    """Gets latency for legacy Java server."""
+    return _get_latency(LegacyServer, ip, port)
+
+
+def get_latency_bedrock(ip: str, port: int) -> str:
+    """Gets latency for Bedrock server."""
+    return _get_latency(BedrockServer, ip, port)

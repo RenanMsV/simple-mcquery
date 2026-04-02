@@ -39,7 +39,7 @@ waitress-serve --listen=127.0.0.1:3000 app:create_app
 
 Get full server info:
 ```
-GET /api/{version}/full/{ip}/{port}
+GET /api/{version}/full/{ip}/{port?}
 ```
 Example result:
 ```
@@ -59,7 +59,7 @@ Example result:
 
 Get player count:
 ```
-GET /api/{version}/playercount/{ip}/{port}
+GET /api/{version}/playercount/{ip}/{port?}
 ```
 Example result:
 ```
@@ -67,6 +67,20 @@ Example result:
   "cached_at": "2026-04-02T01:10:40.548396",
   "message": {
     "players": "19798"
+  }
+}
+```
+
+Get latency:
+```
+GET /api/{version}/latency/{ip}/{port?}
+```
+Example result:
+```
+{
+  "cached_at": "2026-04-02T16:59:01.036532",
+  "message": {
+    "latency": "155"
   }
 }
 ```
