@@ -11,7 +11,7 @@ def _lookup(
         server_cls: JavaServer | LegacyServer | BedrockServer,
         ip: str,
         port: int
-):  
+):
     """Helper to lookup and fetch status."""
     server = server_cls.lookup(f"{ip}:{port}")
     return server.status()
