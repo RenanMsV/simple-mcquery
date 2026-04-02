@@ -19,7 +19,7 @@ python -m app
 
 ### Production server (Waitress)
 ```
-waitress-serve --listen=127.0.0.1:3000 wsgi:app
+waitress-serve --listen=127.0.0.1:3000 app:create_app
 ```
 
 [VSCode](https://code.visualstudio.com/) launch configurations are included.

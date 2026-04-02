@@ -1,0 +1,52 @@
+# app/routes/root.py
+
+"""Defines the main page/root route."""
+
+from http import HTTPStatus
+from flask import Blueprint
+from flask_restful import Api, Resource
+
+from app.extensions import cache
+from app.config import (
+    APP_NAME,
+    APP_VERSION,
+    APP_DESCRIPTION,
+    CACHE_TIMEOUT,
+    DefaultPorts
+)
+
+root_bp = Blueprint("root", __name__)
+api = Api(root_bp)
+
+
+class Root(Resource):
+    """Main page route."""
+    @cache.cached(timeout=CACHE_TIMEOUT)
+    def get(self):
+        """The main page shows a status message and
+        other related information."""
+        return {
+            "status": "online",
+            "service": APP_NAME,
+            "version": APP_VERSION,
+            "description": APP_DESCRIPTION,
+            "routes": {
+                "java_full": "/api/java/full/{ip}/{port?}",
+                "java_players": "/api/java/playercount/{ip}/{port?}",
+                "legacy_full": "/api/legacy/full/{ip}/{port?}",
+                "legacy_players": "/api/legacy/playercount/{ip}/{port?}",
+                "bedrock_full": "/api/bedrock/full/{ip}/{port?}",
+                "bedrock_players": "/api/bedrock/playercount/{ip}/{port?}"
+            },
+            "default_ports": {
+                "java": DefaultPorts.JAVA,
+                "legacy": DefaultPorts.LEGACY,
+                "bedrock": DefaultPorts.BEDROCK
+            },
+            "cache": {
+                "cache_timeout_ms": CACHE_TIMEOUT * 1000
+            }
+        }, HTTPStatus.OK
+
+
+api.add_resource(Root, "/")
